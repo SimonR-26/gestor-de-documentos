@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Documentos - Durley</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Pantalla de Login -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-card">
+                <!-- Formulario de Login -->
+                <div id="loginFormContainer" class="form-container">
+                    <h1>🔐 Portal de Documentos</h1>
+                    <p class="login-subtitle">Ingresa a tu cuenta</p>
+                    
+                    <form id="loginForm" class="login-form">
+                        <div class="form-group">
+                            <label for="username">Usuario</label>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                placeholder="Ingresa tu usuario"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                placeholder="Ingresa tu contraseña"
+                                required
+                            >
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                    </form>
+                    
+                    <div id="loginMessage" class="login-message hidden"></div>
+                    
+                    <div class="login-footer">
+                        <p>¿No tienes cuenta? <button type="button" id="toggleRegister" class="link-btn">Crea una aquí</button></p>
+                    </div>
+                </div>
+
+                <!-- Formulario de Registro -->
+                <div id="registerFormContainer" class="form-container hidden">
+                    <h1>📝 Crear Cuenta</h1>
+                    <p class="login-subtitle">Regístrate para comenzar</p>
+                    
+                    <form id="registerForm" class="login-form">
+                        <div class="form-group">
+                            <label for="regUsername">Usuario</label>
+                            <input 
+                                type="text" 
+                                id="regUsername" 
+                                placeholder="Elige un nombre de usuario"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="regPassword">Contraseña</label>
+                            <input 
+                                type="password" 
+                                id="regPassword" 
+                                placeholder="Crea una contraseña segura"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="regPassword2">Confirmar Contraseña</label>
+                            <input 
+                                type="password" 
+                                id="regPassword2" 
+                                placeholder="Repite tu contraseña"
+                                required
+                            >
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Criar Cuenta</button>
+                    </form>
+                    
+                    <div id="registerMessage" class="login-message hidden"></div>
+                    
+                    <div class="login-footer">
+                        <p>¿Ya tienes cuenta? <button type="button" id="toggleLogin" class="link-btn">Inicia sesión</button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido Principal (oculto hasta login) -->
+    <div id="mainContent" class="main-content hidden">
+        <div class="container">
+            <!-- Encabezado -->
+            <header class="header">
+                <div class="header-top">
+                    <div>
+                        <h1>📁 Portal de Documentos</h1>
+                        <p class="subtitle">Sube y gestiona tus archivos de forma segura</p>
+                    </div>
+                    <button id="logoutBtn" class="btn btn-secondary">🚪 Cerrar Sesión</button>
+                </div>
+            </header>
+
+        <!-- Sección de Carga -->
+        <section class="upload-section">
+            <h2>Subir Documento</h2>
+            
+            <div class="upload-area" id="uploadArea">
+                <svg class="cloud-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                    <polyline points="7 5 7 13 17 13 17 5"></polyline>
+                </svg>
+                <h3>Arrastra archivos aquí</h3>
+                <p>o haz clic para seleccionar</p>
+                <input 
+                    type="file" 
+                    id="fileInput" 
+                    multiple 
+                    accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.jpg,.jpeg,.png,.zip"
+                    style="display: none;"
+                >
+            </div>
+
+            <!-- Información de archivo seleccionado -->
+            <div id="fileInfo" class="file-info hidden">
+                <p>Archivo seleccionado: <strong id="fileName"></strong></p>
+                <button id="uploadBtn" class="btn btn-primary">Subir Documento</button>
+                <button id="cancelBtn" class="btn btn-secondary">Cancelar</button>
+            </div>
+
+            <!-- Mensaje de estado -->
+            <div id="statusMessage" class="status-message hidden"></div>
+        </section>
+
+        <!-- Sección de Historial -->
+        <section class="history-section">
+            <div class="history-header">
+                <h2>Historial de Documentos</h2>
+                <span class="doc-count" id="docCount">0 documentos</span>
+            </div>
+
+            <!-- Lista de documentos -->
+            <div id="documentList" class="document-list">
+                <p class="empty-message">No hay documentos cargados aún. ¡Sube tu primer documento!</p>
+            </div>
+        </section>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación de eliminación -->
+    <div id="deleteModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Confirmar eliminación</h3>
+            <p>¿Estás seguro de que deseas eliminar este documento?</p>
+            <p class="file-to-delete" id="fileToDelete"></p>
+            <div class="modal-buttons">
+                <button id="confirmDelete" class="btn btn-danger">Eliminar</button>
+                <button id="cancelDelete" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

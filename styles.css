@@ -1,0 +1,685 @@
+/* ================================
+   ESTILOS GENERALES
+   ================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    color: #333;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ================================
+   PANTALLA DE LOGIN
+   ================================ */
+
+.login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeIn 0.5s ease;
+}
+
+.login-screen.hidden {
+    display: none;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.login-card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.form-container {
+    animation: fadeIn 0.3s ease;
+}
+
+.form-container.hidden {
+    display: none;
+}
+
+.login-card h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.login-subtitle {
+    color: #999;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.login-form {
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.btn-block {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 1.05em;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.login-message {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.login-message.hidden {
+    display: none;
+}
+
+.login-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.login-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.login-info {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.login-info p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.login-info code {
+    background: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: #333;
+    font-weight: 600;
+}
+
+.login-footer {
+    margin: 20px 0;
+    padding: 15px 0;
+    border-top: 1px solid #e9ecef;
+}
+
+.login-footer p {
+    color: #666;
+    font-size: 0.95em;
+}
+
+.link-btn {
+    background: none;
+    border: none;
+    color: #667eea;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.link-btn:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+/* ================================
+   CONTENIDO PRINCIPAL
+   ================================ */
+
+.main-content {
+    animation: fadeIn 0.5s ease;
+}
+
+.main-content.hidden {
+    display: none;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* ================================
+   ENCABEZADO
+   ================================ */
+
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px 30px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header .subtitle {
+    font-size: 1.1em;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+/* ================================
+   SECCIÓN DE CARGA
+   ================================ */
+
+.upload-section {
+    padding: 40px 30px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.upload-section h2 {
+    font-size: 1.6em;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Área de carga (drag & drop) */
+.upload-area {
+    border: 2px dashed #667eea;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #f8f9ff, #ffffff);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.upload-area:hover {
+    background: linear-gradient(to bottom, #f0f2ff, #ffffff);
+    border-color: #764ba2;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+}
+
+.upload-area.drag-over {
+    background: linear-gradient(to bottom, #e8ebff, #ffffff);
+    border-color: #764ba2;
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+    transform: scale(1.02);
+}
+
+.cloud-icon {
+    width: 60px;
+    height: 60px;
+    color: #667eea;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.upload-area h3 {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.upload-area p {
+    color: #999;
+    font-size: 0.95em;
+}
+
+/* Información del archivo seleccionado */
+.file-info {
+    margin-top: 20px;
+    padding: 15px 20px;
+    background: #f8f9ff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    animation: slideDown 0.3s ease;
+}
+
+.file-info.hidden {
+    display: none;
+}
+
+.file-info p {
+    flex: 1;
+    color: #333;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mensaje de estado */
+.status-message {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideDown 0.3s ease;
+}
+
+.status-message.hidden {
+    display: none;
+}
+
+.status-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.status-message.info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* ================================
+   BOTONES
+   ================================ */
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+    background: #e9ecef;
+    color: #495057;
+}
+
+.btn-secondary:hover {
+    background: #dee2e6;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(220, 53, 69, 0.3);
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85em;
+}
+
+/* ================================
+   SECCIÓN DE HISTORIAL
+   ================================ */
+
+.history-section {
+    padding: 40px 30px;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.history-header h2 {
+    font-size: 1.6em;
+    color: #333;
+}
+
+.doc-count {
+    background: #667eea;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+/* Lista de documentos */
+.document-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.document-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.3s ease;
+}
+
+.document-item:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    border-color: #667eea;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.doc-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.doc-name {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    word-break: break-word;
+    font-size: 0.95em;
+}
+
+.doc-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+    font-size: 0.85em;
+    color: #666;
+}
+
+.doc-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.doc-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.delete-btn {
+    flex: 1;
+}
+
+.empty-message {
+    text-align: center;
+    color: #999;
+    padding: 40px 20px;
+    font-size: 1.1em;
+}
+
+/* ================================
+   MODAL
+   ================================ */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.file-to-delete {
+    font-weight: 600;
+    color: #dc3545;
+    margin: 15px 0;
+    word-break: break-word;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.modal-buttons .btn {
+    flex: 1;
+}
+
+/* ================================
+   RESPONSIVO
+   ================================ */
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.8em;
+    }
+
+    .header-top {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .header-top .btn {
+        align-self: flex-start;
+    }
+
+    .upload-section,
+    .history-section {
+        padding: 25px 20px;
+    }
+
+    .upload-area {
+        padding: 30px;
+    }
+
+    .file-info {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .file-info p {
+        order: -1;
+    }
+
+    .document-list {
+        grid-template-columns: 1fr;
+    }
+
+    .history-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    .login-card {
+        padding: 30px 20px;
+    }
+
+    .login-card h1 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    .container {
+        border-radius: 8px;
+    }
+
+    .header {
+        padding: 20px 15px;
+    }
+
+    .header h1 {
+        font-size: 1.4em;
+    }
+
+    .header-top {
+        gap: 10px;
+    }
+
+    .upload-area {
+        padding: 20px;
+    }
+
+    .cloud-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .modal-content {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .login-container {
+        padding: 10px;
+    }
+
+    .login-card {
+        padding: 25px 15px;
+    }
+}
