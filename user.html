@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentos - Portal de Durley</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="user-body">
+
+  <header class="user-header">
+    <div class="user-header-inner">
+      <div class="header-brand">
+        <span class="header-logo">📁</span>
+        <div>
+          <h1>Portal de Documentos</h1>
+          <p class="header-subtitle">Documentos disponibles para descarga</p>
+        </div>
+      </div>
+      <a href="index.html" class="btn btn-outline">← Inicio</a>
+    </div>
+  </header>
+
+  <main class="user-main">
+    <div class="panel-header">
+      <h2>Documentos Disponibles</h2>
+      <span class="doc-count" id="docCount">0 documentos</span>
+    </div>
+    <div id="documentList" class="document-list">
+      <p class="empty-message">No hay documentos disponibles por el momento.</p>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/user.js"></script>
+</body>
+</html>

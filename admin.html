@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrador - Portal de Documentos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-body">
+
+  <!-- ===== PANTALLA DE LOGIN ===== -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-wrapper">
+      <div class="login-card">
+        <a href="index.html" class="back-link">← Volver al inicio</a>
+
+        <div class="login-header">
+          <div class="login-logo">🔐</div>
+          <h1>Panel de Administrador</h1>
+          <p class="login-subtitle">Ingresa tus credenciales</p>
+        </div>
+
+        <form id="loginForm" class="login-form" novalidate>
+          <div class="form-group">
+            <label for="loginUsername">Usuario</label>
+            <input
+              type="text"
+              id="loginUsername"
+              placeholder="Nombre de usuario"
+              autocomplete="username"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Contraseña</label>
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Contraseña"
+              autocomplete="current-password"
+              required
+            >
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+        </form>
+
+        <div id="loginMessage" class="status-message hidden"></div>
+
+        <div class="login-hint">
+          <small>Credenciales iniciales: <code>admin</code> / <code>admin123</code></small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PANEL DE ADMINISTRACIÓN ===== -->
+  <div id="adminPanel" class="admin-layout hidden">
+
+    <!-- Header -->
+    <header class="admin-header">
+      <div class="admin-header-inner">
+        <div class="header-brand">
+          <span class="header-logo">📁</span>
+          <div>
+            <h1>Portal de Documentos</h1>
+            <p class="header-subtitle">Panel de Administración</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <span class="user-badge">👤 <span id="currentUser"></span></span>
+          <a href="user.html" class="btn btn-outline" target="_blank">👁️ Vista Pública</a>
+          <button id="logoutBtn" class="btn btn-secondary">🚪 Salir</button>
+        </div>
+      </div>
+
+      <!-- Tabs de navegación -->
+      <nav class="admin-tabs">
+        <button id="tabDocuments" class="tab-btn active">📋 Documentos</button>
+        <button id="tabUpload"    class="tab-btn">📤 Subir Archivo</button>
+        <button id="tabUsers"     class="tab-btn">👥 Usuarios</button>
+      </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="admin-main">
+
+      <!-- Panel: Documentos -->
+      <div id="panelDocuments" class="tab-panel">
+        <div class="panel-header">
+          <h2>Documentos</h2>
+          <span class="doc-count" id="docCount">0 documentos</span>
+        </div>
+        <div id="documentList" class="document-list">
+          <p class="empty-message">No hay documentos cargados aún.</p>
+        </div>
+      </div>
+
+      <!-- Panel: Subir Archivo -->
+      <div id="panelUpload" class="tab-panel hidden">
+        <div class="panel-header">
+          <h2>Subir Archivo</h2>
+        </div>
+
+        <div id="uploadArea" class="upload-area">
+          <svg class="upload-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <h3>Arrastra un archivo aquí</h3>
+          <p>o haz clic para seleccionar</p>
+          <p class="upload-hint">PDF, Word, Excel, PowerPoint, TXT, JPG, PNG, ZIP — Máx. 5 MB</p>
+          <input
+            type="file"
+            id="fileInput"
+            accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.jpg,.jpeg,.png,.zip"
+            style="display:none"
+          >
+        </div>
+
+        <div id="filePreview" class="file-preview hidden">
+          <div class="file-preview-info">
+            <span class="file-icon-sm">📎</span>
+            <div>
+              <p class="file-preview-name" id="filePreviewName"></p>
+              <p class="file-preview-size" id="filePreviewSize"></p>
+            </div>
+          </div>
+          <div class="file-preview-actions">
+            <button id="uploadBtn" class="btn btn-primary">📤 Subir Documento</button>
+            <button id="cancelUploadBtn" class="btn btn-secondary">Cancelar</button>
+          </div>
+        </div>
+
+        <div id="uploadStatus" class="status-message hidden"></div>
+        <div id="storageUsage" class="storage-info"></div>
+      </div>
+
+      <!-- Panel: Usuarios (solo Admin Principal) -->
+      <div id="panelUsers" class="tab-panel hidden">
+        <div class="panel-header">
+          <h2>Gestión de Usuarios</h2>
+        </div>
+
+        <div class="users-layout">
+          <div class="users-list-section">
+            <h3>Administradores registrados</h3>
+            <div id="usersList" class="users-list"></div>
+          </div>
+
+          <div class="create-user-section">
+            <h3>Crear nuevo administrador</h3>
+            <form id="createUserForm" class="create-user-form" novalidate>
+              <div class="form-group">
+                <label for="newUsername">Usuario</label>
+                <input type="text" id="newUsername" placeholder="Nombre de usuario" minlength="3" required>
+              </div>
+              <div class="form-group">
+                <label for="newPassword">Contraseña</label>
+                <input type="password" id="newPassword" placeholder="Contraseña (mín. 4 caracteres)" minlength="4" required>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Crear Administrador</button>
+            </form>
+            <div id="userMessage" class="status-message hidden"></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ===== MODAL: CONFIRMAR ELIMINACIÓN ===== -->
+  <div id="deleteModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-icon">🗑️</div>
+      <h3>Confirmar eliminación</h3>
+      <p>¿Seguro que deseas eliminar este archivo? Esta acción no se puede deshacer.</p>
+      <p class="modal-filename" id="fileToDeleteName"></p>
+      <div class="modal-actions">
+        <button id="confirmDeleteBtn" class="btn btn-danger">Eliminar</button>
+        <button id="cancelDeleteBtn"  class="btn btn-secondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
